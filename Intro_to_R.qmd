@@ -1,0 +1,188 @@
+---
+title: "EVS 3000L - Data Analyisis"
+subtitle: "Introduction to R"
+author: "Ana Yoko Ykeuti Meiga and Isaac Coleman"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+format:
+  html:
+    embed-resources: true
+editor: visual
+number-sections: true
+theme:
+  light: flatly
+  dark: superhero
+---
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("https://dataschoolnigeria.com.ng/wp-content/uploads/2021/10/R-for-Data-Analysis-training-in-Abuja-Nigeria.jpg")
+```
+
+# Introduction
+
+The goal of this class is to provide students with an introduction to R language and basic aspects of computer programming that are necessary for conducting biological research. We will cover basic topics such as data organization and how to create well-structured data, extract information from data, and run some basic analyses. We will use the data collected during our Terrestrial Field Methods Lab (Module 5).
+
+*Goals:*
+
+-   Introduction to R language and basic aspects of computer programming.
+-   Learn about data organization and how to create well-structured data, and extract information from data.
+-   Run some basic analyses (biodiversity indexes).
+-   Create plots and maps with the data.
+-   Work collaboratively in teams to understand the data collected at NATL during the Terrestrial Field Methods (Module 5) – species identification and tree measurement.
+
+## Material Required
+
+1.  Laptop.
+2.  Install R and RStudio or setup access to Posit Cloud/Server (online version of RStudio that runs in your browser).
+3.  Datasheets from NATL Lab.
+
+*Links to install R*
+
+Check this [link](https://statistics.byu.edu/r-and-rstudio) for more information on how to install R and RStudio.
+
+Other useful links to download R and R Studio: [link](https://posit.co/download/rstudio-desktop/%20https://www.r-project.org/) 
+[link](https://cran.r-project.org/bin/windows/base/)
+
+Or you can log into Posit Cloud: [link](https://posit.cloud/)
+
+# Agenda
+
+-   Overview: What is R?
+
+-   The Basics: RStudio Global Options
+
+-   Core R concepts
+
+-   The environment
+
+-   Functions
+
+-   Best practices in coding
+
+-   Exercises
+
+-   Feedback
+
+-   Resources and references
+
+# Overview
+
+## What is R and RStudio?
+
+R is a programming language that describes itself as "a language and environment for statistical computing and graphics." The R community has expanded its capabilities to cover a wide range of general statistical analyses and many discipline-specific analyses. Statisticians and scientists across diverse disciplines in the natural and social sciences commonly use R, including data engineering and management, as well as using R as a Geographic Information System (GIS). R is free, open source, and provides access to new and cutting-edge analyses which consists of a series of 'packages'. The program allows you to write (code) your own functions for data analysis. What is the difference between R and and RStudio? R application is installed on your computer and uses your personal computer resources to process R programming language. RStudio integrates with R as an IDE (Integrated Development Environment) to provide further functionality. RStudio combines a source code editor, build automation tools and a debugger. It makes our lives much easier to use RStudio!
+
+## Advantages of using R
+
+R and RStudio continues to growing in popularity. It is one of the most used tool for researchers when it comes to analyzing data. Although programming can be very challenging sometimes, here is a list of why R is so popular and the advantages of using it:
+
+-   R is an **open source**. It is a free tool that can be used by anyone. Additionally, it also means that R is actively developed by by a community. The R community is very active and there are regular updates. See more about it at [link](https://www.r-project.org/). 
+
+-   R is **widely used** in different areas (not just bioinformatics), thus it is more likely to find help when needed. The more people are using, the more information on how to solve error messages you can get.
+
+-   R is a **powerful** tool. R can be used in any platform (Windows, MacOS, Linux). It is powerful to deal with big data sets that popular spreadsheet programs like Excel can't.
+
+-   R is **reproducible**. Because R uses scripts, it is more reproducible. You can share and publish your codes so other researchers can reply the analysis. In addition, there are thousands of packages available for science.
+
+# The Basics
+
+Before we start diving in coding and analyzing the data, let's get used to RStudio structure first.
+
+# RStudio
+<style>
+.float-left {
+  float: left;
+  margin-right: 10px;
+  width: 50px; /* Control the size */
+}
+</style>
+
+
+```{r echo=FALSE, fig.align='left', message=FALSE, warning=FALSE, out.width='50px'}
+knitr::include_graphics("https://bookdown.org/einavg7/sp_technical_guide/images/rstudio_logo.png")
+```
+
+RStudio is organized into four panes as you can see below.
+The **Source** pane is the interface where you will write all your coding and editing the scripts. An R script is basically a text file uses a programming language to set commands to read, manipulate, and analyze data. You will always use the Source pane to write your codes.
+
+The **Console** pane is the interface between R and RStudio. When a line of code is run from the command prompt (the symbol >) on the console, the interface sends the code to R which evaluates it and returns any potential output. So, the code written in the source pane is sent to the console pane, which sends the code to R for evaluation, and R prints the results in the console pane. Basically, you will write the codes on the source panel, and how your code is being processed is showed on the console. If you have an error message, for example, it will show up in the console.
+
+The **Environment** pane contains the information on your current R session. The 
+names of the 'objects' that you assigned during your coding will be stored in the Environment (Global Environment). 
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("https://datacarpentry.github.io/genomics-r-intro/fig/rstudio_session_4pane_layout.png")
+```
+
+## Creating a Project
+
+## RStudio Global Options
+
+Before getting started using R and RStudio, setting up some basic configurations in R Studio will make it easier to further analysis and to better visualize the codes and functions. Let's start setting up some basics in the Global Options.
+
+### General options
+
+RStudio gives us the opportunity to automatically save the data that we’re working on and a history of code that we ran. We don’t want to accept either of these opportunities! Doing so can lead to a very sloppy coding workflow. More importantly, as the tasks that you undertake in R become more complex, these “opportunities” become more of a hindrance than a help. It’s best to avoid them from the get-go.
+
+> **Set General options**
+>
+> Go to “General \> Basic”:
+>
+> -   Set “Save workspace to .RData on exit” to “Never”
+> -   Ensure that there is no check mark to the left of “Always save history (even when not saving .RData)”
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("~/OneDrive - University of Florida/TA_EVS_3000L/Modules/Module_08_intro_to_R/images/tools_general.png")
+```
+
+### Display
+
+Go to Tools -\> Global Options -\> Display (top menu bar) Check the following options if not checked yet. Note, the rainbow parenthesis will make a lot of difference when coding!
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("~/OneDrive - University of Florida/TA_EVS_3000L/Modules/Module_08_intro_to_R/images/tools_display.png")
+```
+
+# Core R concepts
+
+# The environment
+
+# Functions
+
+# Best practices in coding
+
+# Exercises
+
+# Feedback
+
+Divide in groups and discuss the following questions: *What was surprising? Why?* *What was confusing? Why?* *What is the takeaway message from this lab?*
+
+# Resources and references
+As we saw previously, the R community is huge and super active. Thus, we can find many good resources to learn more about. If you are interest in doing research in the future, pursue a graduate degree, I highly recommend taking preliminary courses in R and reading the good material we can find in the internet.
+
+## Courses at UF
+Undergraduate level:
+- Environmental Data Science, with Dr. Ryan Good
+
+Those courses are for graduate level: 
+- Data Carpentry, with Dr. Ethan White
+- Data Visualization, with Dr. Geraldine Klarenberg and Dr. Daniel Johnson
+
+## Resources in the internet:
+This is a great and popular online book
+[link](https://r4ds.had.co.nz/)
+
+Best practices in R
+[link](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R.html)
+
+Guide to R
+[link](https://jef.works/R-style-guide/)
+[link](https://bookdown.org/ndphillips/YaRrr/who-am-i.html)
+
+ggplot Tutorials
+[link](https://ggplot2.tidyverse.org/)
+[link](https://exts.ggplot2.tidyverse.org/gallery/)
+
+The R gallery - collection of different type of plots/graphs
+[link](https://r-graph-gallery.com/index.html)
+
+How to make beautiful maps in R
+[link](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)

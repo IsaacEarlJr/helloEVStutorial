@@ -1,0 +1,185 @@
+---
+title: "EVS 3000L JS Map Tutorial"
+author: "Isaac Coleman"
+format: html
+---
+
+## **Introduction**
+
+This tutorial offers a simple introduction to GIS and basic programming in a way that connects to natural resources. It pairs with the R tutorial to give students a broader perspective on how mapping and data analysis are used in environmental science.
+
+The goal is to provide a basic foundation, making these topics feel more approachable if students encounter them again in the future. While this is not an advanced training, it serves as a helpful introduction to key concepts used in the field.
+
+For this exercise, we will be using data collected from the Natural Area Teaching Lab (NATL). The data is now loaded and ready to be used in this program to explore basic GIS functions and applications.
+
+------------------------------------------------------------------------
+
+## **Step 1: Basic HTML Structure**
+
+Every webpage starts with a simple **HTML structure**. This step introduces:
+
+- The `<!DOCTYPE html>` declaration, which tells the browser we are using **HTML5**.
+- The `<html>` element, which **wraps everything** inside the document.
+- The `<head>` section, where we define the **title** of the page.
+- The `<body>` section, which contains the **visible content**.
+
+***
+
+```         
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EVS 3000L</title>
+</head>
+<body>
+    <p>Hello, EVS!</p>
+</body>
+</html>
+```
+
+------------------------------------------------------------------------
+
+## **Step 2: Adding JavaScript Libraries**
+
+```         
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+
+    <!-- Load Leaflet from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <p>Leaflet is now ready!</p>
+</body>
+</html>
+```
+
+------------------------------------------------------------------------
+
+## **Step 3: Adding CSS Styles**
+
+```         
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Styled Leaflet Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #mapid {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div>
+</body>
+</html>
+```
+
+------------------------------------------------------------------------
+
+## **Step 4: Initialize Leaflet Map**
+
+```         
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+</head>
+<body>
+    <div id="mapid"></div>
+
+    <script>
+        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
+    </script>
+</body>
+</html>
+```
+
+------------------------------------------------------------------------
+
+## **Step 5: Add Base Layers**
+
+```         
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Base Layers</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #mapid {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div>
+
+    <script>
+        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
+
+        var earth = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Map data © OpenStreetMap'
+        }).addTo(mymap);
+
+        var darkGrey = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19,
+            attribution: '© CARTO'
+        });
+
+        L.control.layers({
+            "Earth": earth,
+            "Dark": darkGrey
+        }).addTo(mymap);
+    </script>
+</body>
+</html>
+```
+
+------------------------------------------------------------------------
+
+## **Step 6: Add Feature Layers**
+
+```         
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Feature Layer</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet"></script>
+
+    <style>
+        #mapid {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div>
+
+    <script>
+        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
+
+        var featureLayer = L.esri.featureLayer({
+            url: 'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/Florida_County_Lines/FeatureServer/0',
+            where: "NAME IN ('Alachua', 'St. Johns', 'Duval', 'Levy')"
+        }).addTo(mymap);
+    </script>
+</body>
+</html>
+```
