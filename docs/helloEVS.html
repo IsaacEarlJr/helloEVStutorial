@@ -8,7 +8,7 @@
 
 <meta name="author" content="Isaac Coleman">
 
-<title>EVS 3000L JS Map Tutorial</title>
+<title>EVS 3000L Map Tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,29 +24,66 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="helloEVS_files/libs/clipboard/clipboard.min.js"></script>
-<script src="helloEVS_files/libs/quarto-html/quarto.js"></script>
-<script src="helloEVS_files/libs/quarto-html/popper.min.js"></script>
-<script src="helloEVS_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="helloEVS_files/libs/quarto-html/anchor.min.js"></script>
-<link href="helloEVS_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="helloEVS_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="helloEVS_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="helloEVS_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="helloEVS_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
 </head>
 
 <body class="fullcontent">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">EVS 3000L JS Map Tutorial</h1>
+<h1 class="title">EVS 3000L Map Tutorial</h1>
 </div>
 
 
@@ -69,168 +106,84 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction"><strong>Introduction</strong></h2>
-<p>This tutorial offers a simple introduction to GIS and basic programming in a way that connects to natural resources. It pairs with the R tutorial to give students a broader perspective on how mapping and data analysis are used in environmental science.</p>
-<p>The goal is to provide a basic foundation, making these topics feel more approachable if students encounter them again in the future. While this is not an advanced training, it serves as a helpful introduction to key concepts used in the field.</p>
-<p>For this exercise, we will be using data collected from the Natural Area Teaching Lab (NATL). The data is now loaded and ready to be used in this program to explore basic GIS functions and applications.</p>
+<section id="evs-3000l-map-tutorial" class="level1">
+<h1><strong>EVS 3000L Map Tutorial</strong></h1>
 <hr>
-</section>
 <section id="step-1-basic-html-structure" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-basic-html-structure"><strong>Step 1: Basic HTML Structure</strong></h2>
-<p>Every webpage starts with a simple <strong>HTML structure</strong>. This step introduces:</p>
-<ul>
-<li>The <code>&lt;!DOCTYPE html&gt;</code> declaration, which tells the browser we are using <strong>HTML5</strong>.</li>
-<li>The <code>&lt;html&gt;</code> element, which <strong>wraps everything</strong> inside the document.</li>
-<li>The <code>&lt;head&gt;</code> section, where we define the <strong>title</strong> of the page.</li>
-<li>The <code>&lt;body&gt;</code> section, which contains the <strong>visible content</strong>.</li>
-</ul>
-<hr>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;EVS 3000L&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;Hello, EVS!&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+```html &lt;!DOCTYPE html&gt;
+
+
+<title>
+Basic Webpage
+</title>
+
+
+<h1>
+Welcome to EVS 3000L Map Tutorial
+</h1>
+<p>
+This is a simple HTML page.
+</p>
+
+
 <hr>
 </section>
 <section id="step-2-adding-javascript-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-adding-javascript-libraries"><strong>Step 2: Adding JavaScript Libraries</strong></h2>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Leaflet Map&lt;/title&gt;
+<p>```html</p>
+&lt;!DOCTYPE html&gt;
 
-    &lt;!-- Load Leaflet from CDN --&gt;
-    &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
-    &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;Leaflet is now ready!&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+
+<title>
+Leaflet Map
+</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+<h1>
+Leaflet Map Example
+</h1>
+<p>
+We are now ready to create a map!
+</p>
+
+
 <hr>
 </section>
 <section id="step-3-adding-css-styles" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-adding-css-styles"><strong>Step 3: Adding CSS Styles</strong></h2>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Styled Leaflet Map&lt;/title&gt;
+&lt;!DOCTYPE html&gt;
 
-    &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
-    &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
 
-    &lt;style&gt;
+<title>
+Styled Leaflet Map
+</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<style>
         #mapid {
             height: 100vh;
             width: 100%;
         }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="mapid"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<hr>
+    </style>
+
+
+<h1>
+Leaflet Map with CSS
+</h1>
+<div id="mapid">
+
+</div>
+
+
+
+
 </section>
-<section id="step-4-initialize-leaflet-map" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-initialize-leaflet-map"><strong>Step 4: Initialize Leaflet Map</strong></h2>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Leaflet Map&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="mapid"&gt;&lt;/div&gt;
-
-    &lt;script&gt;
-        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<hr>
-</section>
-<section id="step-5-add-base-layers" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-add-base-layers"><strong>Step 5: Add Base Layers</strong></h2>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Leaflet Base Layers&lt;/title&gt;
-
-    &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
-    &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
-
-    &lt;style&gt;
-        #mapid {
-            height: 100vh;
-            width: 100%;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="mapid"&gt;&lt;/div&gt;
-
-    &lt;script&gt;
-        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
-
-        var earth = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: 'Map data © OpenStreetMap'
-        }).addTo(mymap);
-
-        var darkGrey = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            maxZoom: 19,
-            attribution: '© CARTO'
-        });
-
-        L.control.layers({
-            "Earth": earth,
-            "Dark": darkGrey
-        }).addTo(mymap);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<hr>
-</section>
-<section id="step-6-add-feature-layers" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-add-feature-layers"><strong>Step 6: Add Feature Layers</strong></h2>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Leaflet Feature Layer&lt;/title&gt;
-
-    &lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;
-    &lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;
-    &lt;script src="https://unpkg.com/esri-leaflet"&gt;&lt;/script&gt;
-
-    &lt;style&gt;
-        #mapid {
-            height: 100vh;
-            width: 100%;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="mapid"&gt;&lt;/div&gt;
-
-    &lt;script&gt;
-        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
-
-        var featureLayer = L.esri.featureLayer({
-            url: 'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/Florida_County_Lines/FeatureServer/0',
-            where: "NAME IN ('Alachua', 'St. Johns', 'Duval', 'Levy')"
-        }).addTo(mymap);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
