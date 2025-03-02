@@ -18,12 +18,12 @@ For this exercise, we will be using data collected from the Natural Area Teachin
 
 Every webpage starts with a simple **HTML structure**. This step introduces:
 
-- The `<!DOCTYPE html>` declaration, which tells the browser we are using **HTML5**.
-- The `<html>` element, which **wraps everything** inside the document.
-- The `<head>` section, where we define the **title** of the page.
-- The `<body>` section, which contains the **visible content**.
+-   The `<!DOCTYPE html>` declaration, which tells the browser we are using **HTML5**.
+-   The `<html>` element, which **wraps everything** inside the document.
+-   The `<head>` section, where we define the **title** of the page.
+-   The `<body>` section, which contains the **visible content**.
 
-***
+------------------------------------------------------------------------
 
 ```         
 <!DOCTYPE html>
