@@ -1,64 +1,52 @@
 ---
 title: "EVS 3000L Map Tutorial"
-author: "Your Name"
+author: "Isaac Coleman"
 format: html
 ---
 
 # **EVS 3000L Map Tutorial**
 
-This tutorial explains how to set up an interactive map using **Leaflet.js** and **Esri Leaflet** in JavaScript.
-
-We will:
-- Initialize a Leaflet map.
-- Add OpenStreetMap and CartoDB base layers.
-- Overlay Florida county boundaries.
-
 ---
 
 ## **Step 1: Basic HTML Structure**
 
-Here’s what a simple HTML structure looks like:
-
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EVS 3000L</title>
+    <title>Basic Webpage</title>
 </head>
 <body>
-    <p>Hello, EVS!</p>
+    <h1>Welcome to EVS 3000L Map Tutorial</h1>
+    <p>This is a simple HTML page.</p>
 </body>
 </html>
 
-```
-
 ---
+
 ## **Step 2: Adding JavaScript Libraries**
 
-
-```
+```html
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Leaflet Map</title>
-
-    <!-- Load Leaflet from CDN -->
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <p>Leaflet is now ready!</p>
+    <h1>Leaflet Map Example</h1>
+    <p>We are now ready to create a map!</p>
 </body>
 </html>
 
-```
-
 ---
+
 ## **Step 3: Adding CSS Styles**
 
 
-```
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,119 +63,10 @@ Here’s what a simple HTML structure looks like:
     </style>
 </head>
 <body>
+    <h1>Leaflet Map with CSS</h1>
     <div id="mapid"></div>
 </body>
 </html>
 
-```
 
-
----
-## **Step 4: Initialize Leaflet Map**
-
-
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Leaflet Map</title>
-</head>
-<body>
-    <div id="mapid"></div>
-
-    <script>
-        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
-    </script>
-</body>
-</html>
-
-```
-
-
-
----
-## **Step 5: Add Base Layers**
-
-
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Leaflet Base Layers</title>
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <style>
-        #mapid {
-            height: 100vh;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div id="mapid"></div>
-
-    <script>
-        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
-
-        var earth = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: 'Map data © OpenStreetMap'
-        }).addTo(mymap);
-
-        var darkGrey = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            maxZoom: 19,
-            attribution: '© CARTO'
-        });
-
-        L.control.layers({
-            "Earth": earth,
-            "Dark": darkGrey
-        }).addTo(mymap);
-    </script>
-</body>
-</html>
-
-```
-
-
-
-
----
-## **Step 6: Add Feature Layers**
-
-
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Leaflet Feature Layer</title>
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/esri-leaflet"></script>
-
-    <style>
-        #mapid {
-            height: 100vh;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div id="mapid"></div>
-
-    <script>
-        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
-
-        var featureLayer = L.esri.featureLayer({
-            url: 'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/Florida_County_Lines/FeatureServer/0',
-            where: "NAME IN ('Alachua', 'St. Johns', 'Duval', 'Levy')"
-        }).addTo(mymap);
-    </script>
-</body>
-</html>
-
-```
 

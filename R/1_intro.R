@@ -22,6 +22,7 @@
 # load libraries ------
 library(readxl) # read excel files
 library(sf) # package to deal with GIS systems
+install.packages("mapview")
 library(mapview) # to visualize maps
 library(tidyverse) # one of the most useful packages
 
