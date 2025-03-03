@@ -14,7 +14,7 @@ css: styles.css
 
 
 <div style="text-align: center;">
-  <img src="C:/Users/isaac/Documents/Grad School/CLASSES/SPRING_25/EVS300L/Week 8/EVS/EVS/mapimage.jpg" alt="Cool Map Image" width="600">
+  <img src="../mapimage.jpg" alt="Cool Map Image" width="600">
 </div>
 
 <div style="text-align: center; font-style: italic; margin-top: 10px;">
