@@ -14,8 +14,9 @@ css: styles.css
 
 
 <div style="text-align: center;">
-  <img src="../mapimage.jpg" alt="Cool Map Image" width="600">
+  <img src="mapimage.jpg" alt="Cool Map Image" width="600">
 </div>
+
 
 <div style="text-align: center; font-style: italic; margin-top: 10px;">
   This document was developed for the School of Natural Resources and Environment at the University of Florida.
