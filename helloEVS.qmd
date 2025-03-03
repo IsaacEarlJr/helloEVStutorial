@@ -4,6 +4,8 @@ author: "Isaac Coleman"
 format: html
 ---
 
+
+
 ## **Introduction**
 
 This tutorial offers a simple introduction to GIS and basic programming in a way that connects to natural resources. It pairs with the R tutorial to give students a broader perspective on how mapping and data analysis are used in environmental science.
@@ -11,6 +13,16 @@ This tutorial offers a simple introduction to GIS and basic programming in a way
 The goal is to provide a basic foundation, making these topics feel more approachable if students encounter them again in the future. While this is not an advanced training, it serves as a helpful introduction to key concepts used in the field.
 
 For this exercise, we will be using data collected from the Natural Area Teaching Lab (NATL). The data is now loaded and ready to be used in this program to explore basic GIS functions and applications.
+
+
+### **Before You Begin**
+To complete this tutorial, you will need:
+
+- A **GitHub account** to manage your code. [GitHub](https://github.com/)
+- An **ArcGIS Online account** to access GIS data services. [ArcGIS Online](https://www.arcgis.com/index.html)
+
+(GitHub is free, but ArcGIS Online requires affiliation with an institution (e.g., a university) or a paid subscription. If you are a student, check with your school for access.)
+
 
 ------------------------------------------------------------------------
 
@@ -41,26 +53,29 @@ Every webpage starts with a simple **HTML structure**.
 
 ## **Step 2: Adding JavaScript Libraries**
 
-In this step, we install **Leaflet**, a JavaScript library designed for interactive mapping.  
+In this step, we install **Leaflet**, a JavaScript library designed for interactive mapping.
 
-### **What is a Library?**  
-- A **library** is a collection of **pre-written code** that provides useful functions.  
-- It **saves time and effort** by allowing us to perform tasks without writing every function from scratch.  
-- In **GIS**, mapping libraries help:  
-  - Manage **spatial data**  
-  - Render **maps**  
-  - Create **interactive features**  
+### **What is a Library?**
 
-### **Why Use Leaflet?**  
-- **Lightweight**, efficient, and easy to use.  
-- Provides built-in tools for **displaying maps, adding layers, and handling user interactions**.  
-- Allows us to **quickly set up an interactive map** with minimal code.  
+-   A **library** is a collection of **pre-written code** that provides useful functions.\
+-   It **saves time and effort** by allowing us to perform tasks without writing every function from scratch.\
+-   In **GIS**, mapping libraries help:
+    -   Manage **spatial data**\
+    -   Render **maps**\
+    -   Create **interactive features**
 
-### **Loading Leaflet from a CDN**  
-The code below loads Leaflet from a Content Delivery Network (CDN), making it available for use in our project.  
+### **Why Use Leaflet?**
 
-- `<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />`
-- `<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>`
+-   **Lightweight**, efficient, and easy to use.\
+-   Provides built-in tools for **displaying maps, adding layers, and handling user interactions**.\
+-   Allows us to **quickly set up an interactive map** with minimal code.
+
+### **Loading Leaflet from a CDN**
+
+The code below loads Leaflet from a Content Delivery Network (CDN), making it available for use in our project.
+
+-   `<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />`
+-   `<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>`
 
 ------------------------------------------------------------------------
 
@@ -88,22 +103,24 @@ After adding this, Leaflet is installed and ready to use, allowing us to create 
 
 ## **Step 3: Adding CSS Styles**
 
-In this step, we define styles using **CSS (Cascading Style Sheets)**. The CSS controls the appearance and layout of web elements, allowing **customization of colors, fonts, spacing, and responsiveness.** The # symbol targets a specific element by its unique ID, ensuring only that element receives the defined styles, while other selectors like . (class) apply styles to multiple elements.
+In this step, we define styles using **CSS (Cascading Style Sheets)**. The CSS controls the appearance and layout of web elements, allowing **customization of colors, fonts, spacing, and responsiveness.** The \# symbol targets a specific element by its unique ID, ensuring only that element receives the defined styles, while other selectors like . (class) apply styles to multiple elements.
 
-### What Does CSS Do?  
-- Allows us to set **colors, fonts, spacing, and layout**.  
-- Makes content **visually structured and easy to interact with**.  
+### What Does CSS Do?
 
-### How It Applies to Leaflet:  
-- Ensures the **map displays correctly** by setting its size.  
-- The `#mapid` container is given a height of **100%** of the viewport height **(100vh)**; width is set to 100%.  
-- The **width is set to 100%**, making the map responsive.
+-   Allows us to set **colors, fonts, spacing, and layout**.\
+-   Makes content **visually structured and easy to interact with**.
 
-### Understanding (div) Elements:  
-- The `<div>` element is a **container** that groups and organizes content.
-- The `id="mapid"` attribute gives the `<div>` a unique identifier, allowing us to target it with CSS and JavaScript.
-- Without this container `<div>`, the map would not have a place to display on the webpage.
+### How It Applies to Leaflet:
 
+-   Ensures the **map displays correctly** by setting its size.\
+-   The `#mapid` container is given a height of **100%** of the viewport height **(100vh)**; width is set to 100%.\
+-   The **width is set to 100%**, making the map responsive.
+
+### Understanding (div) Elements:
+
+-   The `<div>` element is a **container** that groups and organizes content.
+-   The `id="mapid"` attribute gives the `<div>` a unique identifier, allowing us to target it with CSS and JavaScript.
+-   Without this container `<div>`, the map would not have a place to display on the webpage.
 
 ------------------------------------------------------------------------
 
@@ -129,20 +146,20 @@ In this step, we define styles using **CSS (Cascading Style Sheets)**. The CSS c
 </html>
 ```
 
-[W3Schools](https://www.w3schools.com/css/css_examples.asp) offers a CSS testing tool where you can experiment with CSS code on the fly, and it also provides similar tools for HTML, JavaScript, and other web technologies.]
+[W3Schools](https://www.w3schools.com/css/css_examples.asp) offers a CSS testing tool where you can experiment with CSS code on the fly, and it also provides similar tools for HTML, JavaScript, and other web technologies.\]
 
 ------------------------------------------------------------------------
 
 ## **Step 4: Initialize Leaflet Map**
 
-Now that Leaflet is installed and styled, we need to initialize the map so it appears on the webpage.  
-This step creates a map instance, which is the core object that manages how the map is displayed and interacts with data.  
+Now that Leaflet is installed and styled, we need to initialize the map so it appears on the webpage.\
+This step creates a map instance, which is the core object that manages how the map is displayed and interacts with data.
 
-### What Happens in This Step?  
-- **Creates a map instance** → `L.map('mapid')` connects Leaflet to the `<div>` where the map will be displayed.  
-- **Sets the center of the map** → The coordinates `[29.7993, -82.7728]` define the starting point (latitude, longitude).  
-- **Defines the zoom level** → `8.8` sets how far the map is zoomed in (higher numbers zoom in closer).  
+### What Happens in This Step?
 
+-   **Creates a map instance** → `L.map('mapid')` connects Leaflet to the `<div>` where the map will be displayed.\
+-   **Sets the center of the map** → The coordinates `[29.7993, -82.7728]` define the starting point (latitude, longitude).\
+-   **Defines the zoom level** → `8.8` sets how far the map is zoomed in (higher numbers zoom in closer).
 
 ------------------------------------------------------------------------
 
@@ -175,19 +192,19 @@ This step creates a map instance, which is the core object that manages how the 
 
 ------------------------------------------------------------------------
 
-## **Step 5: Add Base Layers**  
+## **Step 5: Add Base Layers**
 
-Now that we have initialized the map, we need to **add base layers**, which serve as the background and provide geographic context for our data. A base layer displays features like **roads, terrain, or satellite imagery**, helping users interpret spatial information.  
+Now that we have initialized the map, we need to **add base layers**, which serve as the background and provide geographic context for our data. A base layer displays features like **roads, terrain, or satellite imagery**, helping users interpret spatial information.
 
-In this step, we will add two different base layers and include a control panel that lets users switch between them.  
+In this step, we will add two different base layers and include a control panel that lets users switch between them.
 
-### **What Happens in This Step?**  
+### **What Happens in This Step?**
 
-- **Loads base layers (Maps)** using **`L.tileLayer()`** → This function retrieves different map backgrounds, such as street maps, satellite imagery, and terrain views, from external sources.
-- Uses **`addLayersControl()`** → A function that enables users to **toggle** between base layers using a built-in Leaflet control button. 
+-   **Loads base layers (Maps)** using **`L.tileLayer()`** → This function retrieves different map backgrounds, such as street maps, satellite imagery, and terrain views, from external sources.
+-   Uses **`addLayersControl()`** → A function that enables users to **toggle** between base layers using a built-in Leaflet control button.
 
 [Learn more about Leaflet OpenStreet Baselayers:](https://leaflet-extras.github.io/leaflet-providers/preview/)
-  
+
 ------------------------------------------------------------------------
 
 ```         
@@ -235,17 +252,19 @@ In this step, we will add two different base layers and include a control panel 
 
 ## **Step 6: Add Feature Layers**
 
-Now that we have set up the base layers, it's time to add **feature layers**, which are data layers that contain specific geographic features such as boundaries, points, or polygons. In this step, we will load the **NATL Data** from an **ArcGIS Online feature service** and display them on our map.  
+Now that we have set up the base layers, it's time to add **feature layers**, which are data layers that contain specific geographic features such as boundaries, points, or polygons. In this step, we will load the **NATL Data** from an **ArcGIS Online feature service** and display them on our map.
 
-### **What Happens in This Step?**  
-- **Loads Esri Leaflet** → A plugin that allows us to use ArcGIS feature layers in Leaflet. (We need to another library similar to what we did in Step 2)
-  - Erri Leaflet Library: `<script src="https://unpkg.com/esri-leaflet"></script>`
-- **Adds a feature layer from ArcGIS Online** 
-  - `'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/tree_measurement_all/FeatureServer/0'`
-  
-### **Why Do We Need Feature Layers?**  
-- Unlike base layers, which provide a background map, feature layers display specific data such as roads, water bodies, protected areas, or administrative boundaries.  
-- Feature layers allow users to visualize, analyze, and interact with geographic data. 
+### **What Happens in This Step?**
+
+-   **Loads Esri Leaflet** → A plugin that allows us to use ArcGIS feature layers in Leaflet. (We need to another library similar to what we did in Step 2)
+    -   Erri Leaflet Library: `<script src="https://unpkg.com/esri-leaflet"></script>`
+-   **Adds a feature layer from ArcGIS Online**
+    -   `'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/tree_measurement_all/FeatureServer/0'`
+
+### **Why Do We Need Feature Layers?**
+
+-   Unlike base layers, which provide a background map, feature layers display specific data such as roads, water bodies, protected areas, or administrative boundaries.\
+-   Feature layers allow users to visualize, analyze, and interact with geographic data.
 
 ------------------------------------------------------------------------
 
@@ -313,6 +332,7 @@ Now that we have set up the base layers, it's time to add **feature layers**, wh
 </body>
 </html>
 ```
+
 [ArcGIS Online: A cloud-based GIS platform for mapping, analysis, and data sharing.](https://www.arcgis.com/index.html)
 
 ------------------------------------------------------------------------
@@ -321,21 +341,18 @@ Now that we have set up the base layers, it's time to add **feature layers**, wh
 
 Now that we’ve completed our map with data, let’s add a **feature layer function** that allows us to interact with the data. These functions enhance our map by displaying **circle markers** at each data point while providing important **popup information** when clicked.
 
-
-- **`style: function ()`**  
-  - This function defines the visual appearance of the feature layer.  
-
-- **`onEachFeature: function (feature, layer)`**  
-  - This function creates a **popup tool** that allows users to view detailed information when clicking a feature.  
-
+-   **`style: function ()`**
+    -   This function defines the visual appearance of the feature layer.
+-   **`onEachFeature: function (feature, layer)`**
+    -   This function creates a **popup tool** that allows users to view detailed information when clicking a feature.
 
 ### **Why This Matters**
-This step transforms your static map into an **interactive ecological data visualization tool**. By integrating a **feature layer function**, you make the map more informative and user-friendly, allowing users to explore data directly on the map rather than relying on a separate table or document.
 
+This step transforms your static map into an **interactive ecological data visualization tool**. By integrating a **feature layer function**, you make the map more informative and user-friendly, allowing users to explore data directly on the map rather than relying on a separate table or document.
 
 ------------------------------------------------------------------------
 
-```
+```         
 <!DOCTYPE html>
 <html>
 <head>
@@ -425,4 +442,5 @@ This step transforms your static map into an **interactive ecological data visua
 ```
 
 ### **Congratulations!** 🎉
+
 You have now coded and built your first environmental GIS-based webpage! You've learned a new way to work with spatial data while learning basic programming concepts.
