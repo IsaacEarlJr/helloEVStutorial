@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Isaac Coleman">
+<meta name="dcterms.date" content="2025-03-03">
 
 <title>EVS 3000L JS Map Tutorial</title>
 <style>
@@ -66,18 +67,62 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> <strong>Introduction</strong></a>
+  <ul class="collapse">
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin"><span class="header-section-number">1.1</span> <strong>Before You Begin</strong></a></li>
+  </ul></li>
+  <li><a href="#step-1-basic-html-structure" id="toc-step-1-basic-html-structure" class="nav-link" data-scroll-target="#step-1-basic-html-structure"><span class="header-section-number">2</span> <strong>Step 1: Basic HTML Structure</strong></a></li>
+  <li><a href="#step-2-adding-javascript-libraries" id="toc-step-2-adding-javascript-libraries" class="nav-link" data-scroll-target="#step-2-adding-javascript-libraries"><span class="header-section-number">3</span> <strong>Step 2: Adding JavaScript Libraries</strong></a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-library" id="toc-what-is-a-library" class="nav-link" data-scroll-target="#what-is-a-library"><span class="header-section-number">3.1</span> <strong>What is a Library?</strong></a></li>
+  <li><a href="#why-use-leaflet" id="toc-why-use-leaflet" class="nav-link" data-scroll-target="#why-use-leaflet"><span class="header-section-number">3.2</span> <strong>Why Use Leaflet?</strong></a></li>
+  <li><a href="#loading-leaflet-from-a-cdn" id="toc-loading-leaflet-from-a-cdn" class="nav-link" data-scroll-target="#loading-leaflet-from-a-cdn"><span class="header-section-number">3.3</span> <strong>Loading Leaflet from a CDN</strong></a></li>
+  </ul></li>
+  <li><a href="#step-3-adding-css-styles" id="toc-step-3-adding-css-styles" class="nav-link" data-scroll-target="#step-3-adding-css-styles"><span class="header-section-number">4</span> <strong>Step 3: Adding CSS Styles</strong></a>
+  <ul class="collapse">
+  <li><a href="#what-does-css-do" id="toc-what-does-css-do" class="nav-link" data-scroll-target="#what-does-css-do"><span class="header-section-number">4.1</span> What Does CSS Do?</a></li>
+  <li><a href="#how-it-applies-to-leaflet" id="toc-how-it-applies-to-leaflet" class="nav-link" data-scroll-target="#how-it-applies-to-leaflet"><span class="header-section-number">4.2</span> How It Applies to Leaflet:</a></li>
+  <li><a href="#understanding-div-elements" id="toc-understanding-div-elements" class="nav-link" data-scroll-target="#understanding-div-elements"><span class="header-section-number">4.3</span> Understanding (div) Elements:</a></li>
+  </ul></li>
+  <li><a href="#step-4-initialize-leaflet-map" id="toc-step-4-initialize-leaflet-map" class="nav-link" data-scroll-target="#step-4-initialize-leaflet-map"><span class="header-section-number">5</span> <strong>Step 4: Initialize Leaflet Map</strong></a>
+  <ul class="collapse">
+  <li><a href="#what-happens-in-this-step" id="toc-what-happens-in-this-step" class="nav-link" data-scroll-target="#what-happens-in-this-step"><span class="header-section-number">5.1</span> What Happens in This Step?</a></li>
+  </ul></li>
+  <li><a href="#step-5-add-base-layers" id="toc-step-5-add-base-layers" class="nav-link" data-scroll-target="#step-5-add-base-layers"><span class="header-section-number">6</span> <strong>Step 5: Add Base Layers</strong></a>
+  <ul class="collapse">
+  <li><a href="#what-happens-in-this-step-1" id="toc-what-happens-in-this-step-1" class="nav-link" data-scroll-target="#what-happens-in-this-step-1"><span class="header-section-number">6.1</span> <strong>What Happens in This Step?</strong></a></li>
+  </ul></li>
+  <li><a href="#step-6-add-feature-layers" id="toc-step-6-add-feature-layers" class="nav-link" data-scroll-target="#step-6-add-feature-layers"><span class="header-section-number">7</span> <strong>Step 6: Add Feature Layers</strong></a>
+  <ul class="collapse">
+  <li><a href="#what-happens-in-this-step-2" id="toc-what-happens-in-this-step-2" class="nav-link" data-scroll-target="#what-happens-in-this-step-2"><span class="header-section-number">7.1</span> <strong>What Happens in This Step?</strong></a></li>
+  <li><a href="#why-do-we-need-feature-layers" id="toc-why-do-we-need-feature-layers" class="nav-link" data-scroll-target="#why-do-we-need-feature-layers"><span class="header-section-number">7.2</span> <strong>Why Do We Need Feature Layers?</strong></a></li>
+  </ul></li>
+  <li><a href="#step-7-add-feature-layer-functions" id="toc-step-7-add-feature-layer-functions" class="nav-link" data-scroll-target="#step-7-add-feature-layer-functions"><span class="header-section-number">8</span> <strong>Step 7: Add Feature Layer Functions</strong></a>
+  <ul class="collapse">
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters"><span class="header-section-number">8.1</span> <strong>Why This Matters</strong></a></li>
+  <li><a href="#congratulations" id="toc-congratulations" class="nav-link" data-scroll-target="#congratulations"><span class="header-section-number">8.2</span> <strong>Congratulations!</strong> 🎉</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -97,6 +142,12 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 3, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -106,13 +157,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction"><strong>Introduction</strong></h2>
+<div style="text-align: center;">
+<p><img src="C:/Users/isaac/Documents/Grad School/CLASSES/SPRING_25/EVS300L/Week 8/EVS/EVS/mapimage.jpg" alt="Cool Map Image" width="600"></p>
+</div>
+<div style="text-align: center; font-style: italic; margin-top: 10px;">
+<p>This document was developed for the School of Natural Resources and Environment at the University of Florida.</p>
+</div>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> <strong>Introduction</strong></h2>
 <p>This tutorial offers a simple introduction to GIS and basic programming in a way that connects to natural resources. It pairs with the R tutorial to give students a broader perspective on how mapping and data analysis are used in environmental science.</p>
 <p>The goal is to provide a basic foundation, making these topics feel more approachable if students encounter them again in the future. While this is not an advanced training, it serves as a helpful introduction to key concepts used in the field.</p>
 <p>For this exercise, we will be using data collected from the Natural Area Teaching Lab (NATL). The data is now loaded and ready to be used in this program to explore basic GIS functions and applications.</p>
-<section id="before-you-begin" class="level3">
-<h3 class="anchored" data-anchor-id="before-you-begin"><strong>Before You Begin</strong></h3>
+<section id="before-you-begin" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="before-you-begin"><span class="header-section-number">1.1</span> <strong>Before You Begin</strong></h3>
 <p>To complete this tutorial, you will need:</p>
 <ul>
 <li>A <strong>GitHub account</strong> to manage your code. <a href="https://github.com/">GitHub</a></li>
@@ -122,8 +179,8 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="step-1-basic-html-structure" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-basic-html-structure"><strong>Step 1: Basic HTML Structure</strong></h2>
+<section id="step-1-basic-html-structure" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="step-1-basic-html-structure"><span class="header-section-number">2</span> <strong>Step 1: Basic HTML Structure</strong></h2>
 <p>Every webpage starts with a simple <strong>HTML structure</strong>.</p>
 <ul>
 <li>The <code>&lt;!DOCTYPE html&gt;</code> declaration, which tells the browser we are using <strong>HTML5</strong>.</li>
@@ -143,11 +200,11 @@ ul.task-list li input[type="checkbox"] {
 &lt;/html&gt;</code></pre>
 <hr>
 </section>
-<section id="step-2-adding-javascript-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-adding-javascript-libraries"><strong>Step 2: Adding JavaScript Libraries</strong></h2>
+<section id="step-2-adding-javascript-libraries" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="step-2-adding-javascript-libraries"><span class="header-section-number">3</span> <strong>Step 2: Adding JavaScript Libraries</strong></h2>
 <p>In this step, we install <strong>Leaflet</strong>, a JavaScript library designed for interactive mapping.</p>
-<section id="what-is-a-library" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-a-library"><strong>What is a Library?</strong></h3>
+<section id="what-is-a-library" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="what-is-a-library"><span class="header-section-number">3.1</span> <strong>What is a Library?</strong></h3>
 <ul>
 <li>A <strong>library</strong> is a collection of <strong>pre-written code</strong> that provides useful functions.<br>
 </li>
@@ -163,8 +220,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="why-use-leaflet" class="level3">
-<h3 class="anchored" data-anchor-id="why-use-leaflet"><strong>Why Use Leaflet?</strong></h3>
+<section id="why-use-leaflet" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="why-use-leaflet"><span class="header-section-number">3.2</span> <strong>Why Use Leaflet?</strong></h3>
 <ul>
 <li><strong>Lightweight</strong>, efficient, and easy to use.<br>
 </li>
@@ -173,8 +230,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Allows us to <strong>quickly set up an interactive map</strong> with minimal code.</li>
 </ul>
 </section>
-<section id="loading-leaflet-from-a-cdn" class="level3">
-<h3 class="anchored" data-anchor-id="loading-leaflet-from-a-cdn"><strong>Loading Leaflet from a CDN</strong></h3>
+<section id="loading-leaflet-from-a-cdn" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="loading-leaflet-from-a-cdn"><span class="header-section-number">3.3</span> <strong>Loading Leaflet from a CDN</strong></h3>
 <p>The code below loads Leaflet from a Content Delivery Network (CDN), making it available for use in our project.</p>
 <ul>
 <li><code>&lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;</code></li>
@@ -199,19 +256,19 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="step-3-adding-css-styles" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-adding-css-styles"><strong>Step 3: Adding CSS Styles</strong></h2>
+<section id="step-3-adding-css-styles" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="step-3-adding-css-styles"><span class="header-section-number">4</span> <strong>Step 3: Adding CSS Styles</strong></h2>
 <p>In this step, we define styles using <strong>CSS (Cascading Style Sheets)</strong>. The CSS controls the appearance and layout of web elements, allowing <strong>customization of colors, fonts, spacing, and responsiveness.</strong> The # symbol targets a specific element by its unique ID, ensuring only that element receives the defined styles, while other selectors like . (class) apply styles to multiple elements.</p>
-<section id="what-does-css-do" class="level3">
-<h3 class="anchored" data-anchor-id="what-does-css-do">What Does CSS Do?</h3>
+<section id="what-does-css-do" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="what-does-css-do"><span class="header-section-number">4.1</span> What Does CSS Do?</h3>
 <ul>
 <li>Allows us to set <strong>colors, fonts, spacing, and layout</strong>.<br>
 </li>
 <li>Makes content <strong>visually structured and easy to interact with</strong>.</li>
 </ul>
 </section>
-<section id="how-it-applies-to-leaflet" class="level3">
-<h3 class="anchored" data-anchor-id="how-it-applies-to-leaflet">How It Applies to Leaflet:</h3>
+<section id="how-it-applies-to-leaflet" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="how-it-applies-to-leaflet"><span class="header-section-number">4.2</span> How It Applies to Leaflet:</h3>
 <ul>
 <li>Ensures the <strong>map displays correctly</strong> by setting its size.<br>
 </li>
@@ -220,8 +277,8 @@ ul.task-list li input[type="checkbox"] {
 <li>The <strong>width is set to 100%</strong>, making the map responsive.</li>
 </ul>
 </section>
-<section id="understanding-div-elements" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-div-elements">Understanding (div) Elements:</h3>
+<section id="understanding-div-elements" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="understanding-div-elements"><span class="header-section-number">4.3</span> Understanding (div) Elements:</h3>
 <ul>
 <li>The <code>&lt;div&gt;</code> element is a <strong>container</strong> that groups and organizes content.</li>
 <li>The <code>id="mapid"</code> attribute gives the <code>&lt;div&gt;</code> a unique identifier, allowing us to target it with CSS and JavaScript.</li>
@@ -251,12 +308,12 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="step-4-initialize-leaflet-map" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-initialize-leaflet-map"><strong>Step 4: Initialize Leaflet Map</strong></h2>
+<section id="step-4-initialize-leaflet-map" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="step-4-initialize-leaflet-map"><span class="header-section-number">5</span> <strong>Step 4: Initialize Leaflet Map</strong></h2>
 <p>Now that Leaflet is installed and styled, we need to initialize the map so it appears on the webpage.<br>
 This step creates a map instance, which is the core object that manages how the map is displayed and interacts with data.</p>
-<section id="what-happens-in-this-step" class="level3">
-<h3 class="anchored" data-anchor-id="what-happens-in-this-step">What Happens in This Step?</h3>
+<section id="what-happens-in-this-step" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="what-happens-in-this-step"><span class="header-section-number">5.1</span> What Happens in This Step?</h3>
 <ul>
 <li><strong>Creates a map instance</strong> → <code>L.map('mapid')</code> connects Leaflet to the <code>&lt;div&gt;</code> where the map will be displayed.<br>
 </li>
@@ -292,12 +349,12 @@ This step creates a map instance, which is the core object that manages how the 
 <hr>
 </section>
 </section>
-<section id="step-5-add-base-layers" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-add-base-layers"><strong>Step 5: Add Base Layers</strong></h2>
+<section id="step-5-add-base-layers" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="step-5-add-base-layers"><span class="header-section-number">6</span> <strong>Step 5: Add Base Layers</strong></h2>
 <p>Now that we have initialized the map, we need to <strong>add base layers</strong>, which serve as the background and provide geographic context for our data. A base layer displays features like <strong>roads, terrain, or satellite imagery</strong>, helping users interpret spatial information.</p>
 <p>In this step, we will add two different base layers and include a control panel that lets users switch between them.</p>
-<section id="what-happens-in-this-step-1" class="level3">
-<h3 class="anchored" data-anchor-id="what-happens-in-this-step-1"><strong>What Happens in This Step?</strong></h3>
+<section id="what-happens-in-this-step-1" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="what-happens-in-this-step-1"><span class="header-section-number">6.1</span> <strong>What Happens in This Step?</strong></h3>
 <ul>
 <li><strong>Loads base layers (Maps)</strong> using <strong><code>L.tileLayer()</code></strong> → This function retrieves different map backgrounds, such as street maps, satellite imagery, and terrain views, from external sources.</li>
 <li>Uses <strong><code>addLayersControl()</code></strong> → A function that enables users to <strong>toggle</strong> between base layers using a built-in Leaflet control button.</li>
@@ -345,11 +402,11 @@ This step creates a map instance, which is the core object that manages how the 
 <hr>
 </section>
 </section>
-<section id="step-6-add-feature-layers" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-add-feature-layers"><strong>Step 6: Add Feature Layers</strong></h2>
+<section id="step-6-add-feature-layers" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="step-6-add-feature-layers"><span class="header-section-number">7</span> <strong>Step 6: Add Feature Layers</strong></h2>
 <p>Now that we have set up the base layers, it’s time to add <strong>feature layers</strong>, which are data layers that contain specific geographic features such as boundaries, points, or polygons. In this step, we will load the <strong>NATL Data</strong> from an <strong>ArcGIS Online feature service</strong> and display them on our map.</p>
-<section id="what-happens-in-this-step-2" class="level3">
-<h3 class="anchored" data-anchor-id="what-happens-in-this-step-2"><strong>What Happens in This Step?</strong></h3>
+<section id="what-happens-in-this-step-2" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="what-happens-in-this-step-2"><span class="header-section-number">7.1</span> <strong>What Happens in This Step?</strong></h3>
 <ul>
 <li><strong>Loads Esri Leaflet</strong> → A plugin that allows us to use ArcGIS feature layers in Leaflet. (We need to another library similar to what we did in Step 2)
 <ul>
@@ -361,8 +418,8 @@ This step creates a map instance, which is the core object that manages how the 
 </ul></li>
 </ul>
 </section>
-<section id="why-do-we-need-feature-layers" class="level3">
-<h3 class="anchored" data-anchor-id="why-do-we-need-feature-layers"><strong>Why Do We Need Feature Layers?</strong></h3>
+<section id="why-do-we-need-feature-layers" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="why-do-we-need-feature-layers"><span class="header-section-number">7.2</span> <strong>Why Do We Need Feature Layers?</strong></h3>
 <ul>
 <li>Unlike base layers, which provide a background map, feature layers display specific data such as roads, water bodies, protected areas, or administrative boundaries.<br>
 </li>
@@ -435,8 +492,8 @@ This step creates a map instance, which is the core object that manages how the 
 <hr>
 </section>
 </section>
-<section id="step-7-add-feature-layer-functions" class="level2">
-<h2 class="anchored" data-anchor-id="step-7-add-feature-layer-functions"><strong>Step 7: Add Feature Layer Functions</strong></h2>
+<section id="step-7-add-feature-layer-functions" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="step-7-add-feature-layer-functions"><span class="header-section-number">8</span> <strong>Step 7: Add Feature Layer Functions</strong></h2>
 <p>Now that we’ve completed our map with data, let’s add a <strong>feature layer function</strong> that allows us to interact with the data. These functions enhance our map by displaying <strong>circle markers</strong> at each data point while providing important <strong>popup information</strong> when clicked.</p>
 <ul>
 <li><strong><code>style: function ()</code></strong>
@@ -448,8 +505,8 @@ This step creates a map instance, which is the core object that manages how the 
 <li>This function creates a <strong>popup tool</strong> that allows users to view detailed information when clicking a feature.</li>
 </ul></li>
 </ul>
-<section id="why-this-matters" class="level3">
-<h3 class="anchored" data-anchor-id="why-this-matters"><strong>Why This Matters</strong></h3>
+<section id="why-this-matters" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="why-this-matters"><span class="header-section-number">8.1</span> <strong>Why This Matters</strong></h3>
 <p>This step transforms your static map into an <strong>interactive ecological data visualization tool</strong>. By integrating a <strong>feature layer function</strong>, you make the map more informative and user-friendly, allowing users to explore data directly on the map rather than relying on a separate table or document.</p>
 <hr>
 <pre><code>&lt;!DOCTYPE html&gt;
@@ -539,8 +596,8 @@ This step creates a map instance, which is the core object that manages how the 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </section>
-<section id="congratulations" class="level3">
-<h3 class="anchored" data-anchor-id="congratulations"><strong>Congratulations!</strong> 🎉</h3>
+<section id="congratulations" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="congratulations"><span class="header-section-number">8.2</span> <strong>Congratulations!</strong> 🎉</h3>
 <p>You have now coded and built your first environmental GIS-based webpage! You’ve learned a new way to work with spatial data while learning basic programming concepts.</p>
 
 
@@ -973,4 +1030,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -1,9 +1,25 @@
 ---
 title: "EVS 3000L JS Map Tutorial"
 author: "Isaac Coleman"
-format: html
+date: "03/03/2025"
+format: 
+  html:
+    toc: true
+    toc-location: right
+    smooth-scroll: true
+    number-sections: true
+css: styles.css
 ---
 
+
+
+<div style="text-align: center;">
+  <img src="C:/Users/isaac/Documents/Grad School/CLASSES/SPRING_25/EVS300L/Week 8/EVS/EVS/mapimage.jpg" alt="Cool Map Image" width="600">
+</div>
+
+<div style="text-align: center; font-style: italic; margin-top: 10px;">
+  This document was developed for the School of Natural Resources and Environment at the University of Florida.
+</div>
 
 
 ## **Introduction**
