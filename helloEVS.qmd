@@ -16,7 +16,7 @@ For this exercise, we will be using data collected from the Natural Area Teachin
 
 ## **Step 1: Basic HTML Structure**
 
-Every webpage starts with a simple **HTML structure**. This step introduces:
+Every webpage starts with a simple **HTML structure**.
 
 -   The `<!DOCTYPE html>` declaration, which tells the browser we are using **HTML5**.
 -   The `<html>` element, which **wraps everything** inside the document.
@@ -41,11 +41,34 @@ Every webpage starts with a simple **HTML structure**. This step introduces:
 
 ## **Step 2: Adding JavaScript Libraries**
 
+In this step, we install **Leaflet**, a JavaScript library designed for interactive mapping.  
+
+### **What is a Library?**  
+- A **library** is a collection of **pre-written code** that provides useful functions.  
+- It **saves time and effort** by allowing us to perform tasks without writing every function from scratch.  
+- In **GIS**, mapping libraries help:  
+  - Manage **spatial data**  
+  - Render **maps**  
+  - Create **interactive features**  
+
+### **Why Use Leaflet?**  
+- **Lightweight**, efficient, and easy to use.  
+- Provides built-in tools for **displaying maps, adding layers, and handling user interactions**.  
+- Allows us to **quickly set up an interactive map** with minimal code.  
+
+### **Loading Leaflet from a CDN**  
+The code below loads Leaflet from a Content Delivery Network (CDN), making it available for use in our project.  
+
+- `<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />`
+- `<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>`
+
+------------------------------------------------------------------------
+
 ```         
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet Map</title>
+    <title>EVS 3000L</title>
 
     <!-- Load Leaflet from CDN -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -57,15 +80,38 @@ Every webpage starts with a simple **HTML structure**. This step introduces:
 </html>
 ```
 
+After adding this, Leaflet is installed and ready to use, allowing us to create and customize interactive maps in the next steps.
+
+[Learn more about Leaflet: Leaflet Official Documentation](https://leafletjs.com/)
+
 ------------------------------------------------------------------------
 
 ## **Step 3: Adding CSS Styles**
+
+In this step, we define styles using **CSS (Cascading Style Sheets)**. The CSS controls the appearance and layout of web elements, allowing **customization of colors, fonts, spacing, and responsiveness.** The # symbol targets a specific element by its unique ID, ensuring only that element receives the defined styles, while other selectors like . (class) apply styles to multiple elements.
+
+### What Does CSS Do?  
+- Allows us to set **colors, fonts, spacing, and layout**.  
+- Makes content **visually structured and easy to interact with**.  
+
+### How It Applies to Leaflet:  
+- Ensures the **map displays correctly** by setting its size.  
+- The `#mapid` container is given a height of **100%** of the viewport height **(100vh)**; width is set to 100%.  
+- The **width is set to 100%**, making the map responsive.
+
+### Understanding (div) Elements:  
+- The `<div>` element is a **container** that groups and organizes content.
+- The `id="mapid"` attribute gives the `<div>` a unique identifier, allowing us to target it with CSS and JavaScript.
+- Without this container `<div>`, the map would not have a place to display on the webpage.
+
+
+------------------------------------------------------------------------
 
 ```         
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Styled Leaflet Map</title>
+    <title>EVS 3000L</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -83,15 +129,37 @@ Every webpage starts with a simple **HTML structure**. This step introduces:
 </html>
 ```
 
+[W3Schools](https://www.w3schools.com/css/css_examples.asp) offers a CSS testing tool where you can experiment with CSS code on the fly, and it also provides similar tools for HTML, JavaScript, and other web technologies.]
+
 ------------------------------------------------------------------------
 
 ## **Step 4: Initialize Leaflet Map**
 
+Now that Leaflet is installed and styled, we need to initialize the map so it appears on the webpage.  
+This step creates a map instance, which is the core object that manages how the map is displayed and interacts with data.  
+
+### What Happens in This Step?  
+- **Creates a map instance** → `L.map('mapid')` connects Leaflet to the `<div>` where the map will be displayed.  
+- **Sets the center of the map** → The coordinates `[29.7993, -82.7728]` define the starting point (latitude, longitude).  
+- **Defines the zoom level** → `8.8` sets how far the map is zoomed in (higher numbers zoom in closer).  
+
+
+------------------------------------------------------------------------
+
 ```         
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet Map</title>
+    <title>EVS 3000L</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #mapid {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div id="mapid"></div>
@@ -99,13 +167,28 @@ Every webpage starts with a simple **HTML structure**. This step introduces:
     <script>
         var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
     </script>
+
+
 </body>
 </html>
 ```
 
 ------------------------------------------------------------------------
 
-## **Step 5: Add Base Layers**
+## **Step 5: Add Base Layers**  
+
+Now that we have initialized the map, we need to **add base layers**, which serve as the background and provide geographic context for our data. A base layer displays features like **roads, terrain, or satellite imagery**, helping users interpret spatial information.  
+
+In this step, we will add two different base layers and include a control panel that lets users switch between them.  
+
+### **What Happens in This Step?**  
+
+- **Loads base layers (Maps)** using **`L.tileLayer()`** → This function retrieves different map backgrounds, such as street maps, satellite imagery, and terrain views, from external sources.
+- Uses **`addLayersControl()`** → A function that enables users to **toggle** between base layers using a built-in Leaflet control button. 
+
+[Learn more about Leaflet OpenStreet Baselayers:](https://leaflet-extras.github.io/leaflet-providers/preview/)
+  
+------------------------------------------------------------------------
 
 ```         
 <!DOCTYPE html>
@@ -152,14 +235,32 @@ Every webpage starts with a simple **HTML structure**. This step introduces:
 
 ## **Step 6: Add Feature Layers**
 
+Now that we have set up the base layers, it's time to add **feature layers**, which are data layers that contain specific geographic features such as boundaries, points, or polygons. In this step, we will load the **NATL Data** from an **ArcGIS Online feature service** and display them on our map.  
+
+### **What Happens in This Step?**  
+- **Loads Esri Leaflet** → A plugin that allows us to use ArcGIS feature layers in Leaflet. (We need to another library similar to what we did in Step 2)
+  - Erri Leaflet Library: `<script src="https://unpkg.com/esri-leaflet"></script>`
+- **Adds a feature layer from ArcGIS Online** 
+  - `'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/tree_measurement_all/FeatureServer/0'`
+  
+### **Why Do We Need Feature Layers?**  
+- Unlike base layers, which provide a background map, feature layers display specific data such as roads, water bodies, protected areas, or administrative boundaries.  
+- Feature layers allow users to visualize, analyze, and interact with geographic data. 
+
+------------------------------------------------------------------------
+
 ```         
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet Feature Layer</title>
+    <title>EVS 3000L</title>
 
+
+    <!-- Load Leaflet from CDN -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Load Esri Leaflet -->
     <script src="https://unpkg.com/esri-leaflet"></script>
 
     <style>
@@ -168,18 +269,160 @@ Every webpage starts with a simple **HTML structure**. This step introduces:
             width: 100%;
         }
     </style>
+
 </head>
 <body>
+
+    <!-- Map Container -->
     <div id="mapid"></div>
 
     <script>
-        var mymap = L.map('mapid').setView([29.7993, -82.7728], 8.8);
+        // Initialize Map
+        var mymap = L.map('mapid').setView([29.6339, -82.3699], 16.8);
 
-        var featureLayer = L.esri.featureLayer({
-            url: 'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/Florida_County_Lines/FeatureServer/0',
-            where: "NAME IN ('Alachua', 'St. Johns', 'Duval', 'Levy')"
+        // Base Layers
+        var earth = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
         }).addTo(mymap);
+
+        var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri, Earthstar Geographics',
+            maxZoom: 19
+        });
+
+        // Layer Control
+        var baseMaps = {
+            "Earth": earth,
+            "Satellite": satellite
+        };
+
+        L.control.layers(baseMaps).addTo(mymap);
+
+        // Feature Layer from ArcGIS Online
+        var featureLayer = L.esri.featureLayer({
+            url: 'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/tree_measurement_all/FeatureServer/0',
+            
+
+        }).addTo(mymap);
+
+
+
     </script>
+
 </body>
 </html>
 ```
+[ArcGIS Online: A cloud-based GIS platform for mapping, analysis, and data sharing.](https://www.arcgis.com/index.html)
+
+------------------------------------------------------------------------
+
+## **Step 7: Add Feature Layer Functions**
+
+Now that we’ve completed our map with data, let’s add a **feature layer function** that allows us to interact with the data. These functions enhance our map by displaying **circle markers** at each data point while providing important **popup information** when clicked.
+
+
+- **`style: function ()`**  
+  - This function defines the visual appearance of the feature layer.  
+
+- **`onEachFeature: function (feature, layer)`**  
+  - This function creates a **popup tool** that allows users to view detailed information when clicking a feature.  
+
+
+### **Why This Matters**
+This step transforms your static map into an **interactive ecological data visualization tool**. By integrating a **feature layer function**, you make the map more informative and user-friendly, allowing users to explore data directly on the map rather than relying on a separate table or document.
+
+
+------------------------------------------------------------------------
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EVS 3000L</title>
+
+
+    <!-- Load Leaflet from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Load Esri Leaflet -->
+    <script src="https://unpkg.com/esri-leaflet"></script>
+
+    <style>
+        #mapid {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Map Container -->
+    <div id="mapid"></div>
+
+    <script>
+        // Initialize Map
+        var mymap = L.map('mapid').setView([29.6339, -82.3699], 16.8);
+
+        // Base Layers
+        var earth = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+
+        var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri, Earthstar Geographics',
+            maxZoom: 19
+        });
+
+        // Layer Control
+        var baseMaps = {
+            "Earth": earth,
+            "Satellite": satellite
+        };
+
+        L.control.layers(baseMaps).addTo(mymap);
+
+        // Feature Layer from ArcGIS Online
+        var featureLayer = L.esri.featureLayer({
+            url: 'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/tree_measurement_all/FeatureServer/0',
+            style: function () {
+                return { color: "blue", weight: 1, fillOpacity: 0.6 };
+            },
+            pointToLayer: function (geojson, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 8,  // Adjust size of circles
+                    fillColor: "red",
+                    color: "white",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            },
+
+            onEachFeature: function (feature, layer) {
+                // Content for hover/click popup
+                var popupContent = `
+                    <strong>Species:</strong> ${feature.properties.species || "Unknown"}<br>
+                    <strong>DBH:</strong> ${feature.properties.dbh_inches || "N/A"} inches<br>
+                    <strong>Height:</strong> ${feature.properties.height_stick_feet_inches || "N/A"} feet<br>
+                    <strong>Names:</strong> ${feature.properties.names || "N/A"}<br>
+                    <strong>Location:</strong> ${feature.properties.location || "N/A"}<br>
+                `;
+                layer.bindPopup(popupContent);
+            }
+
+        }).addTo(mymap);
+
+
+
+    </script>
+
+</body>
+</html>
+```
+
+### **Congratulations!** 🎉
+You have now coded and built your first environmental GIS-based webpage! You've learned a new way to work with spatial data while learning basic programming concepts.
