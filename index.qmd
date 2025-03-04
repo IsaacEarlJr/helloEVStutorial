@@ -1,5 +1,5 @@
 ---
-title: "EVS 3000L JS Map Tutorial"
+title: "EVS 3000L JS in GIS Tutorial"
 author: "Isaac Coleman"
 date: "03/03/2025"
 format: 
@@ -23,22 +23,47 @@ css: styles.css
 </div>
 
 
+
 ## **Introduction**
 
-This tutorial offers a simple introduction to GIS and basic programming in a way that connects to natural resources. It pairs with the R tutorial to give students a broader perspective on how mapping and data analysis are used in environmental science.
-
-The goal is to provide a basic foundation, making these topics feel more approachable if students encounter them again in the future. While this is not an advanced training, it serves as a helpful introduction to key concepts used in the field.
-
-For this exercise, we will be using data collected from the Natural Area Teaching Lab (NATL). The data is now loaded and ready to be used in this program to explore basic GIS functions and applications.
 
 
-### **Before You Begin**
+This tutorial provides a simple introduction to **Geographic Information Systems (GIS)** and basic programming concepts in a way that connects directly to **natural resources and environmental analysis**. The goal is to offer a foundational understanding that makes GIS and coding more approachable and useful if students encounter these topics in future coursework or careers.
+
+Rather than focusing solely on proprietary software, this tutorial introduces students to **open-source tools and workflows** that support spatial analysis and data visualization. By using **GitHub** for version control and collaboration, and integrating open-source GIS software alongside **ArcGIS Online**, students will gain experience with practical, widely used geospatial methods.
+
+For this exercise, we will work with **data collected from the Natural Area Teaching Lab (NATL)**. The data will be hosted on **ArcGIS Online** and we will use **GitHub** as a repository to develop and explore GIS functions, interactive web mapping, and reproducible workflows.
+
+### Why Open-Source?
+- **Accessibility**: Open-source GIS tools like QGIS, Leaflet, and GeoPandas provide free alternatives to proprietary software, lowering financial barriers.
+- **Collaboration**: Using **GitHub** fosters version control, teamwork, and transparent sharing of spatial data and code.
+- **Reproducibility**: Open-source programming in Python (GeoPandas, Folium) or **JavaScript (Leaflet)** allows users to automate spatial analyses and create dynamic web maps that can be shared and modified by others.
+- **Integration**: Open-source GIS can work alongside **proprietary tools (ArcGIS Online, Esri APIs)**, providing flexibility in different workflows.
+
+### What You’ll Learn
+1. **Basic GIS concepts** – how spatial data is structured and analyzed.
+2. **Introduction to open-source GIS tools** – Leaflet libraries
+3. **Hosting and managing geospatial data** using ArcGIS Online and GitHub.
+4. **Simple programming for GIS** – writing basic scripts in JavaScript to interact with maps and data.
+5. **Web mapping fundamentals** – building interactive maps using **Leaflet.js**.
+
+By the end of this tutorial, students will have a working knowledge of **open-source GIS and programming** methods that they can build upon for research, environmental management, and natural resource applications.
+
+
+
+
+
+### Before You Begin
 To complete this tutorial, you will need:
 
 - A **GitHub account** to manage your code. [GitHub](https://github.com/)
 - An **ArcGIS Online account** to access GIS data services. [ArcGIS Online](https://www.arcgis.com/index.html)
 
 (GitHub is free, but ArcGIS Online requires affiliation with an institution (e.g., a university) or a paid subscription. If you are a student, check with your school for access.)
+
+For an overview of all **GIS functions** used in this tutorial, see the **[References](#references)** section at the bottom.
+
+For additional information on **Leaflet**, an open-source JavaScript library for mobile-friendly interactive maps, visit the **[Leaflet Documentation](https://leafletjs.com/)**.
 
 
 ------------------------------------------------------------------------
@@ -461,3 +486,26 @@ This step transforms your static map into an **interactive ecological data visua
 ### **Congratulations!** 🎉
 
 You have now coded and built your first environmental GIS-based webpage! You've learned a new way to work with spatial data while learning basic programming concepts.
+
+
+
+
+## **References**
+This section provides a quick overview of the main GIS functions used in this tutorial.
+
+### **Leaflet Functions**
+- **`L.map()`** – Initializes the map. [Docs](https://leafletjs.com/reference.html#map)
+- **`L.tileLayer()`** – Adds basemap layers. [Docs](https://leafletjs.com/reference.html#tilelayer)
+- **`L.control.layers()`** – Allows switching between basemaps. [Docs](https://leafletjs.com/reference.html#control-layers)
+- **`L.circleMarker()`** – Creates circle markers for point features. [Docs](https://leafletjs.com/reference.html#circlemarker)
+- **`layer.bindPopup()`** – Displays feature attributes in a popup. [Docs](https://leafletjs.com/reference.html#popup)
+
+### **Esri Leaflet Functions**
+- **`L.esri.featureLayer()`** – Loads ArcGIS Online feature layers. [Docs](https://esri.github.io/esri-leaflet/api-reference/layers/feature-layer.html)
+
+### **Additional Resources**
+- [Leaflet Quick Start Guide](https://leafletjs.com/examples/quick-start/)
+- [GitHub Guide](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github)
+- [Esri Leaflet Documentation](https://esri.github.io/esri-leaflet/)
+
+
